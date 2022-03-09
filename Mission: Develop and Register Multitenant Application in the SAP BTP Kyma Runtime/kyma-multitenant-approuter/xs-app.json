@@ -1,0 +1,9 @@
+{
+    "authenticationMethod": "route",
+    "routes": [{
+        "source": "/",
+        "target": "/",
+        "destination": "dest_kyma_multitenant_node",
+        "authenticationType": "xsuaa"
+    }]
+}

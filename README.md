@@ -1,18 +1,27 @@
-# [Title]
+# Developer Tutorials
 <!--- Register repository https://api.reuse.software/register, then add REUSE badge:
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/REPO-NAME)](https://api.reuse.software/info/github.com/SAP-samples/REPO-NAME)
 -->
+> **Note**: The content of this Github repository has been created as source for the SAP Developer Center missions: 
+>
+> - [Develop a Node.js Application in the SAP BTP Kyma Runtime]()
+> - [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime]()
 
 ## Description
+Mission [Develop a Node.js Application in the SAP BTP Kyma Runtime]() shows the basic steps on deploying application in the Kyma runtime, including preparing Kyma environment, building application into OCI image, preparing Kubernetes objects description and deploying in the Kyma runtime.
+
+Mission [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime]() focuses on the development and deployment of a Node.js-based multitenant application in the Kyma runtime. Learn about how to create approuter application, consume the Authorization and Trust Management Service (XSUAA) and the SAP SaaS Provisioning Service for multitenant applications in the Kyma Runtime. Moreover, this mission also shows the basic steps on how to prepare Kyma environment and how to build application into OCI image.
 
 ## Requirements
 
-## Download and Installation
-
-## Known Issues
+- You have installed [Node.js](https://nodejs.org/en/download/).
+- You have a Kyma runtime environment on SAP Business Technology Platform (BTP). If not, please follow this tutorial: [Enable SAP BTP, Kyma Runtime](cp-kyma-getting-started).
+- You have installed [Docker](https://docs.docker.com/get-started/#download-and-install-docker).
+- You have [Docker Hub](https://hub.docker.com/) account. 
+- You have installed [Kubernetes command-line tool](https://kubernetes.io/docs/tasks/tools/#kubectl).
 
 ## How to obtain support
-[Create an issue](https://github.com/SAP-samples/<repository-name>/issues) in this repository if you find a bug or have questions about the content.
+[Create an issue](https://github.com/SAP-samples/btp-kyma-runtime-multitenancy-tutorial/issues) in this repository if you find a bug or have questions about the content.
  
 For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html).
 

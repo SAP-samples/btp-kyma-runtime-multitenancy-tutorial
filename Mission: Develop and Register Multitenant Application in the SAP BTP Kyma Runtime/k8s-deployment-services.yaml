@@ -1,0 +1,68 @@
+################### XSUAA ###################
+---
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  annotations:
+    com.sap.cki/source-instance-name: uaa_kyma_multitenant
+  creationTimestamp: null
+  name: xsuaa-service
+spec:
+  clusterServiceClassExternalName: xsuaa
+  clusterServicePlanExternalName: application
+  parameters:
+    xsappname: multitenant-kyma-demo
+    tenant-mode: shared  # define the application provider tenant as a shared tenant
+    description: Security profile of called application
+    scopes:
+    - name: $XSAPPNAME.Callback
+      description: With this scope set, the callbacks for subscribe, unsubscribe and getDependencies can be called.
+      grant-as-authority-to-apps:
+      - $XSAPPNAME(application,sap-provisioning,tenant-onboarding)  # provide access to the SAP SaaS Provisioning service SAP Authorization and Trust Management service (technical name: saas-registry) for calling callbacks and getting the dependencies API by granting scopes:  
+    oauth2-configuration:
+      redirect-uris:
+      - https://*.<cluster-domain>/**
+
+---
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceBinding
+metadata:
+  creationTimestamp: null
+  name: xsuaa-service-binding
+spec:
+  externalID: ""
+  instanceRef:
+    name: xsuaa-service
+  secretName: xsuaa-service-binding
+
+################### SaaS Provisioning Service ###################
+---
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: saas-registry-service
+spec:
+  clusterServiceClassExternalName: saas-registry
+  clusterServicePlanExternalName: application
+  parameters:
+    # the xsappname refers to the one defined in xsuaa service
+    xsappname: multitenant-kyma-demo
+    displayName: Multitenancy Sample in Kyma
+    description: A NodeJS application to show how to use the SaaS registry to build a multi-tenant application on BTP Kyma Runtime
+    category: 'Provider: TIA'
+    appUrls:
+      # url registered in the kyma-broker which handles SaaS provisioning (subscription/deletion of saas instances)
+      onSubscription: https://<subaccount-subdomain>-node.<cluster-domain>/callback/v1.0/tenants/{tenantId}
+      onSubscriptionAsync: false
+      onUnSubscriptionAsync: false
+---
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceBinding
+metadata:
+  creationTimestamp: null
+  name: saas-registry-service-binding
+spec:
+  externalID: ""
+  instanceRef:
+    name: saas-registry-service
+  secretName: saas-registry-service-binding

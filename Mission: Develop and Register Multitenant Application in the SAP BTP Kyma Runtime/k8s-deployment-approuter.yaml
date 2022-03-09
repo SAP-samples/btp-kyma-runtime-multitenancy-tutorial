@@ -1,0 +1,163 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: destinations-config
+data:
+  destinations: |
+    [
+      {"name":"dest_kyma_multitenant_node","url":"https://<subaccount-subdomain>-node.<cluster-domain>","forwardAuthToken" : true}
+    ]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kyma-multitenant-approuter-multitenancy
+    release: multitenancy
+  name: kyma-multitenant-approuter-multitenancy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kyma-multitenant-approuter-multitenancy
+      release: multitenancy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kyma-multitenant-approuter-multitenancy
+        release: multitenancy
+    spec:
+      automountServiceAccountToken: false
+      imagePullSecrets:
+        - name: registry-secret   # replace with your own registry secret for Docker Hub
+      containers:
+      - env:
+        - name: CLUSTER_DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              key: cluster-domain
+              name: cluster-domain
+        - name: TENANT_HOST_PATTERN
+          value: "^(.*)-approuter.$(CLUSTER_DOMAIN)"  
+        - name: destinations      # refer to the ConfigMap for destinations you created before
+          valueFrom:
+            configMapKeyRef:
+              name: destinations-config
+              key: destinations
+        - name: PORT
+          value: "8080"
+        - name: TMPDIR
+          value: /tmp
+        image: <docker-hub-account>/multitenant-approuter:v1   # replace with your Docker Hub account name
+        livenessProbe:
+          exec:
+            command:
+            - nc
+            - -z
+            - localhost
+            - "8080"
+          failureThreshold: 1
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 60
+        name: kyma-multitenant-approuter-multitenancy
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          exec:
+            command:
+            - nc
+            - -z
+            - localhost
+            - "8080"
+          failureThreshold: 1
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 60
+        resources:
+          limits:
+            ephemeral-storage: 256M
+            memory: 256M
+          requests:
+            cpu: 100m
+            ephemeral-storage: 256M
+            memory: 256M
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          privileged: false
+          readOnlyRootFilesystem: false
+        volumeMounts:
+        - name: xsuaa-volume
+          mountPath: "/etc/secrets/sapcp/xsuaa/xsuaa-service"
+          readOnly: true
+        - mountPath: /tmp
+          name: tmp
+      securityContext:
+        runAsNonRoot: true
+      volumes:
+      - name: xsuaa-volume
+        secret:
+          secretName: xsuaa-service-binding
+      - emptyDir: {}
+        name: tmp
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kyma-multitenant-approuter-multitenancy
+    release: multitenancy
+  name: kyma-multitenant-approuter-multitenancy
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: kyma-multitenant-approuter-multitenancy
+    release: multitenancy
+---
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kyma-multitenant-approuter-multitenancy
+    release: multitenancy
+  name: kyma-multitenant-approuter-multitenancy
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  rules:
+  - accessStrategies:
+    - handler: allow
+    methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    - HEAD
+    path: /.*
+  service:  
+    host: <subaccount-subdomain>-approuter.<cluster-domain>
+    name: kyma-multitenant-approuter-multitenancy
+    port: 8080
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-domain
+data:
+  cluster-domain: <cluster-domain>  ## adapt to your Kyma cluster
