@@ -8,9 +8,13 @@
 > - [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime]()
 
 ## Description
-**Mission [Develop a Node.js Application in the SAP BTP Kyma Runtime]()** shows the basic steps on deploying application in the Kyma runtime, including preparing Kyma environment, building application into OCI image, preparing Kubernetes objects description and deploying in the Kyma runtime. **Sample code** can be found [here](https://github.com/SAP-samples/btp-kyma-runtime-multitenancy-tutorial/tree/main/Mission:%20Develop%20a%20Node.js%20Application%20in%20the%20SAP%20BTP%20Kyma%20Runtime) in this repository.
+**Mission [Develop a Node.js Application in the SAP BTP Kyma Runtime]()** shows the basic steps on deploying application in the Kyma runtime, including preparing Kyma environment, building application into OCI image, preparing Kubernetes objects description and deploying in the Kyma runtime. 
 
-**Mission [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime]()** focuses on the development and deployment of a Node.js-based multitenant application in the Kyma runtime. Learn about how to create approuter application, consume the Authorization and Trust Management Service (XSUAA) and the SAP SaaS Provisioning Service for multitenant applications in the Kyma Runtime. Moreover, this mission also shows the basic steps on how to prepare Kyma environment and how to build application into OCI image. **Sample code** can be found [here](https://github.com/SAP-samples/btp-kyma-runtime-multitenancy-tutorial/tree/main/Mission:%20Develop%20and%20Register%20Multitenant%20Application%20in%20the%20SAP%20BTP%20Kyma%20Runtime) in this repository.
+↪ **Sample code** can be found [here](https://github.com/SAP-samples/btp-kyma-runtime-multitenancy-tutorial/tree/main/Mission:%20Develop%20a%20Node.js%20Application%20in%20the%20SAP%20BTP%20Kyma%20Runtime) in this repository.
+
+**Mission [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime]()** focuses on the development and deployment of a Node.js-based multitenant application in the Kyma runtime. Learn about how to create approuter application, consume the Authorization and Trust Management Service (XSUAA) and the SAP SaaS Provisioning Service for multitenant applications in the Kyma Runtime. Moreover, this mission also shows the basic steps on how to prepare Kyma environment and how to build application into OCI image. 
+
+↪ **Sample code** can be found [here](https://github.com/SAP-samples/btp-kyma-runtime-multitenancy-tutorial/tree/main/Mission:%20Develop%20and%20Register%20Multitenant%20Application%20in%20the%20SAP%20BTP%20Kyma%20Runtime) in this repository.
 
 ## Requirements
 
