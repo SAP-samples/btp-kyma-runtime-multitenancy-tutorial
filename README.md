@@ -3,8 +3,8 @@
 
 > **Note**: The content of this Github repository has been created as source for the SAP Developer Center missions: 
 >
-> - [Develop a Node.js Application in the SAP BTP Kyma Runtime]()
-> - [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime]()
+> - [Develop a Node.js Application in the SAP BTP Kyma Runtime](https://developers.sap.com/mission.cp-kyma-node-js.html)
+> - [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime](https://developers.sap.com/mission.cp-kyma-multitenant.html)
 
 ## Description
 **Mission [Develop a Node.js Application in the SAP BTP Kyma Runtime]()** shows the basic steps on deploying application in the Kyma runtime, including preparing Kyma environment, building application into OCI image, preparing Kubernetes objects description and deploying in the Kyma runtime. 
