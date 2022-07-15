@@ -1,19 +1,19 @@
 # Developer Tutorial - Develop and Register Multitenant Application in the SAP BTP Kyma Runtime
 
-> **Note**: The content of this directory has been created as source for the SAP Developer Center mission: [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime](). 
+> **Note**: The content of this directory has been created as source for the SAP Developer Center mission: [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime](https://developers.sap.com/mission.cp-kyma-node-js.html). 
 >
-> If you would like to explore more tutorials on how to develop and deploy the Node.js Application that this mission based on in the SAP BTP Kyma Runtime, please read the mission: [Develop a Node.js Application in the SAP BTP Kyma Runtime]().
+> If you would like to explore more tutorials on how to develop and deploy the Node.js Application that this mission based on in the SAP BTP Kyma Runtime, please read the mission: [Develop a Node.js Application in the SAP BTP Kyma Runtime](https://developers.sap.com/mission.cp-kyma-multitenant.html).
 
 
 ## Description
-**Mission [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime]()** shows the basic steps on deploying application in the Kyma runtime, including preparing Kyma environment, building application into OCI image, preparing Kubernetes objects description and deploying in the Kyma runtime. 
+**Mission [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime](https://developers.sap.com/mission.cp-kyma-multitenant.html)** shows the basic steps on deploying application in the Kyma runtime, including preparing Kyma environment, building application into OCI image, preparing Kubernetes objects description and deploying in the Kyma runtime. 
 
 ↪ **Sample code** can be found in this directory.
 
 ## Requirements
 
 - You have installed [Node.js](https://nodejs.org/en/download/).
-- You have a Kyma runtime environment on SAP Business Technology Platform (BTP). If not, please follow this tutorial: [Enable SAP BTP, Kyma Runtime](cp-kyma-getting-started).
+- You have a Kyma runtime environment on SAP Business Technology Platform (BTP). If not, please follow this tutorial: [Enable SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-getting-started.html).
 - You have installed [Docker](https://docs.docker.com/get-started/#download-and-install-docker).
 - You have [Docker Hub](https://hub.docker.com/) account. 
 - You have installed [Kubernetes command-line tool](https://kubernetes.io/docs/tasks/tools/#kubectl).

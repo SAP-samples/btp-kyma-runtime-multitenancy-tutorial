@@ -18,7 +18,7 @@
 ## Requirements
 
 - You have installed [Node.js](https://nodejs.org/en/download/).
-- You have a Kyma runtime environment on SAP Business Technology Platform (BTP). If not, please follow this tutorial: [Enable SAP BTP, Kyma Runtime](cp-kyma-getting-started).
+- You have a Kyma runtime environment on SAP Business Technology Platform (BTP). If not, please follow this tutorial: [Enable SAP BTP, Kyma Runtime](https://developers.sap.com/tutorials/cp-kyma-getting-started.html).
 - You have installed [Docker](https://docs.docker.com/get-started/#download-and-install-docker).
 - You have [Docker Hub](https://hub.docker.com/) account. 
 - You have installed [Kubernetes command-line tool](https://kubernetes.io/docs/tasks/tools/#kubectl).
