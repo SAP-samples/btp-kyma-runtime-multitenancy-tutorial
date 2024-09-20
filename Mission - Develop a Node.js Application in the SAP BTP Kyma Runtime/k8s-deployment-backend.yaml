@@ -98,7 +98,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
   labels:
     app: kyma-multitenant-node-multitenancy
     release: multitenancy
@@ -118,7 +117,6 @@ status:
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  creationTimestamp: null
   labels:
     release: multitenancy
   name: multitenancy
