@@ -14,8 +14,9 @@ function createApiRule(svcName, svcPort, host, clusterName) {
         'HEAD',
     ];
     const access_strategy = {
-        path: '/.*',
+        path: '/*',
         methods: supportedMethodsList,
+        noAuth: true,
         // mutators: [{
         //     handler: 'header',
         //     config: {
@@ -30,15 +31,15 @@ function createApiRule(svcName, svcPort, host, clusterName) {
     };
 
     const apiRuleTemplate = {
-        apiVersion: 'gateway.kyma-project.io/v1alpha1',
+        apiVersion: 'gateway.kyma-project.io/v2',
         kind: 'APIRule',
         metadata: {
             name: host + '-apirule',
         },
         spec: {
-            gateway: 'kyma-gateway.kyma-system.svc.cluster.local',
+            gateway: 'kyma-system/kyma-gateway',
+            hosts: [host],
             service: {
-                host: host,
                 name: svcName,
                 port: svcPort,
             },

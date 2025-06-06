@@ -4,9 +4,10 @@ kind: ConfigMap
 metadata:
   name: destinations-config
 data:
+  # Replace <subaccount-subdomain> with your subaccount subdomain and <clusterdomain> with your cluster domain
   destinations: |
     [
-      {"name":"dest_kyma_multitenant_node","url":"https://<subaccount-subdomain>-node.<cluster-domain>","forwardAuthToken" : true}
+      {"name":"dest_kyma_multitenant_node","url":"https://<subaccount-subdomain>-node.<clusterdomain>","forwardAuthToken" : true}
     ]
 ---
 apiVersion: apps/v1
@@ -30,6 +31,7 @@ spec:
       labels:
         app: kyma-multitenant-approuter-multitenancy
         release: multitenancy
+        sidecar.istio.io/inject: "true"  # Enable Istio sidecar injection on Deployment and all Pods
     spec:
       automountServiceAccountToken: false
       imagePullSecrets:
@@ -129,7 +131,7 @@ spec:
     app: kyma-multitenant-approuter-multitenancy
     release: multitenancy
 ---
-apiVersion: gateway.kyma-project.io/v1alpha1
+apiVersion: gateway.kyma-project.io/v2
 kind: APIRule
 metadata:
   creationTimestamp: null
@@ -138,20 +140,14 @@ metadata:
     release: multitenancy
   name: kyma-multitenant-approuter-multitenancy
 spec:
-  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  gateway: kyma-system/kyma-gateway
+  hosts: 
+    - <subaccount-subdomain>-approuter.<clusterdomain>  # Replace <subaccount-subdomain> with your subaccount subdomain and <clusterdomain> with your cluster domain
   rules:
-  - accessStrategies:
-    - handler: allow
-    methods:
-    - GET
-    - POST
-    - PUT
-    - PATCH
-    - DELETE
-    - HEAD
-    path: /.*
+    - path: /*
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"]
+      noAuth: true
   service:  
-    host: <subaccount-subdomain>-approuter.<cluster-domain>
     name: kyma-multitenant-approuter-multitenancy
     port: 8080
 ---
@@ -160,4 +156,4 @@ kind: ConfigMap
 metadata:
   name: cluster-domain
 data:
-  cluster-domain: <cluster-domain>  ## adapt to your Kyma cluster
+  cluster-domain: <clusterdomain>  # Replace <clusterdomain> with your cluster domain

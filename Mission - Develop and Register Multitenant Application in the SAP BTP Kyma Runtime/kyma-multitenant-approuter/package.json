@@ -1,8 +1,8 @@
 {
     "name": "kyma_multitenant_approuter",
     "dependencies": {
-        "@sap/xsenv": "^3",
-        "@sap/approuter": "^8"
+        "@sap/xsenv": "^5",
+        "@sap/approuter": "^20"
     },
     "scripts": {
         "start": "node node_modules/@sap/approuter/approuter.js"
