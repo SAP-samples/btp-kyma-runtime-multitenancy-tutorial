@@ -1,5 +1,5 @@
 ---
-apiVersion: gateway.kyma-project.io/v1beta1
+apiVersion: gateway.kyma-project.io/v2
 kind: APIRule
 metadata:
   labels:
@@ -7,19 +7,13 @@ metadata:
     release: multitenancy
   name: kyma-multitenant-node-multitenancy
 spec:
-  gateway: kyma-gateway.kyma-system.svc.cluster.local
-  host: kyma-multitenant-node-multitenancy
+  gateway: kyma-system/kyma-gateway
+  hosts: 
+    - kyma-multitenant-node-multitenancy
   rules:
-  - accessStrategies:
-    - handler: allow
-    methods:
-    - GET
-    - POST
-    - PUT
-    - PATCH
-    - DELETE
-    - HEAD
-    path: /.*
+    - path: /*
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"]
+      noAuth: true
   service:
     name: kyma-multitenant-node-multitenancy
     port: 8080
@@ -43,6 +37,7 @@ spec:
       labels:
         app: kyma-multitenant-node-multitenancy
         release: multitenancy
+        sidecar.istio.io/inject: "true"  # Enable Istio sidecar injection on Deployment and all Pods
     spec:
       imagePullSecrets:
         - name: registry-secret # replace with your own registry secret
