@@ -1,12 +1,12 @@
-# Developer Tutorial - Develop a Node.js Application in the SAP BTP Kyma Runtime
+# Developer Tutorial - Develop a Node.js Application in the SAP BTP, Kyma runtime
 
-> **Note**: The content of this directory has been created as source for the SAP Developer Center mission: [Develop a Node.js Application in the SAP BTP Kyma Runtime](https://developers.sap.com/mission.cp-kyma-node-js.html). 
+> **Note**: The content of this directory has been created as source for the SAP Developer Center mission: [Develop a Node.js Application in the SAP BTP, Kyma runtime](https://developers.sap.com/mission.cp-kyma-node-js.html). 
 >
-> If you would like to explore more tutorials on how to add multitenancy based on this sample, please read this mission: [Develop and Register Multitenant Application in the SAP BTP Kyma Runtime](https://developers.sap.com/mission.cp-kyma-multitenant.html).
+> If you would like to explore more tutorials on how to add multitenancy based on this sample, please read this mission: [Develop and Register Multitenant Application in SAP BTP, Kyma runtime](https://developers.sap.com/mission.cp-kyma-multitenant.html).
 
 
 ## Description
-**Mission [Develop a Node.js Application in the SAP BTP Kyma Runtime](https://developers.sap.com/mission.cp-kyma-node-js.html)** shows the basic steps on deploying application in the Kyma runtime, including preparing Kyma environment, building application into OCI image, preparing Kubernetes objects description and deploying in the Kyma runtime. 
+**Mission [Develop a Node.js Application in SAP BTP, Kyma runtime](https://developers.sap.com/mission.cp-kyma-node-js.html)** shows the basic steps on deploying application in the Kyma runtime, including preparing Kyma environment, building application into OCI image, preparing Kubernetes objects description and deploying in the Kyma runtime. 
 
 ↪ **Sample code** can be found in this directory.
 
